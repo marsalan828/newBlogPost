@@ -54,6 +54,9 @@ class UserController extends Controller
     }
 
     public function UpdateUser(Request $request){
+        if(!auth()->check()){
+            return response()->json(['message'=>'user is not logged in']);
+        }
         $validator = Validator::make($request->all(),[
             'name' => 'required | max:255',
             'email'=> 'required | email | unique:users',
@@ -77,6 +80,7 @@ class UserController extends Controller
         }
     }
     public function destroyUser(Request $request){
+        
         $user = User::find($request->email);
         $user->delete();
         if($user->is_admin=='admin'){
