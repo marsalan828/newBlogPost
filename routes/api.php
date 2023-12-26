@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\commentController;
 use App\Http\Controllers\PostController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -30,7 +31,11 @@ Route::get('show-unapproved',[PostController::class,'showUnapproved']);
 Route::post('create-post',[PostController::class,'createPost']);
 Route::put('update-post',[PostController::class,'updatePost']);
 
-Route::delete('delete-post',[PostController::class,'deletePost']);    
+Route::delete('delete-post',[PostController::class,'deletePost']);  
+
+// COMMENT
+
+Route::post('create-comment',[commentController::class,'createComment']);
 
 
 // USER
